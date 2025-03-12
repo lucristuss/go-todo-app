@@ -13,6 +13,8 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - todo-net
 
   app:
     build: .
@@ -23,11 +25,17 @@ services:
     ports:
       - "8081:80"
     environment:
-      DB_HOST: db
+      DB_HOST: todo-db
       DB_PORT: 5432
       DB_USER: user
       DB_PASSWORD: password
       DB_NAME: todo
+    networks:
+      - todo-net
 
 volumes:
   postgres_data:
+
+networks:
+  todo-net:
+    driver: bridge
