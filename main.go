@@ -20,5 +20,5 @@ func main() {
 	r.DELETE("/tasks/:id", handlers.DeleteTask)
 
 	// Запуск сервера
-	r.Run(":8080")
+	r.Run(":80")
 }
